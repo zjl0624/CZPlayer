@@ -8,26 +8,56 @@
 
 /* Begin PBXBuildFile section */
 		5F057FBA20E206AB00C0B61C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F057FB920E206AB00C0B61C /* AppDelegate.m */; };
-		5F057FBD20E206AB00C0B61C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F057FBC20E206AB00C0B61C /* ViewController.m */; };
-		5F057FC020E206AB00C0B61C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F057FBE20E206AB00C0B61C /* Main.storyboard */; };
 		5F057FC320E206AB00C0B61C /* CustomAVPlayer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5F057FC120E206AB00C0B61C /* CustomAVPlayer.xcdatamodeld */; };
 		5F057FC520E206AB00C0B61C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F057FC420E206AB00C0B61C /* Assets.xcassets */; };
 		5F057FC820E206AB00C0B61C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F057FC620E206AB00C0B61C /* LaunchScreen.storyboard */; };
 		5F057FCB20E206AB00C0B61C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F057FCA20E206AB00C0B61C /* main.m */; };
+		5F057FD620E209B900C0B61C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F057FD420E209B900C0B61C /* ViewController.m */; };
+		5F057FD720E209B900C0B61C /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F057FD520E209B900C0B61C /* ViewController.xib */; };
+		5F057FDA20E20AF300C0B61C /* PlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F057FD920E20AF300C0B61C /* PlayerView.m */; };
+		5F057FE020E2178900C0B61C /* localvideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5F057FDF20E2178900C0B61C /* localvideo.mp4 */; };
+		5F057FE320E21F3700C0B61C /* PlayerToolsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F057FE220E21F3700C0B61C /* PlayerToolsView.m */; };
+		5F057FE520E21F5800C0B61C /* PlayerToolsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F057FE420E21F5800C0B61C /* PlayerToolsView.xib */; };
+		5F057FF120E2200500C0B61C /* fullscreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F057FE720E2200500C0B61C /* fullscreen@2x.png */; };
+		5F057FF220E2200500C0B61C /* fullscreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F057FE820E2200500C0B61C /* fullscreen@3x.png */; };
+		5F057FF320E2200500C0B61C /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F057FE920E2200500C0B61C /* pause@2x.png */; };
+		5F057FF420E2200500C0B61C /* pause@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F057FEA20E2200500C0B61C /* pause@3x.png */; };
+		5F057FF520E2200500C0B61C /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F057FEB20E2200500C0B61C /* play@2x.png */; };
+		5F057FF620E2200500C0B61C /* play@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F057FEC20E2200500C0B61C /* play@3x.png */; };
+		5F057FF720E2200500C0B61C /* point@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F057FED20E2200500C0B61C /* point@2x.png */; };
+		5F057FF820E2200500C0B61C /* point@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F057FEE20E2200500C0B61C /* point@3x.png */; };
+		5F057FF920E2200500C0B61C /* shrinkscreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F057FEF20E2200500C0B61C /* shrinkscreen@2x.png */; };
+		5F057FFA20E2200500C0B61C /* shrinkscreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F057FF020E2200500C0B61C /* shrinkscreen@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5F057FB520E206AB00C0B61C /* CustomAVPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomAVPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F057FB820E206AB00C0B61C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5F057FB920E206AB00C0B61C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5F057FBB20E206AB00C0B61C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5F057FBC20E206AB00C0B61C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		5F057FBF20E206AB00C0B61C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5F057FC220E206AB00C0B61C /* CustomAVPlayer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CustomAVPlayer.xcdatamodel; sourceTree = "<group>"; };
 		5F057FC420E206AB00C0B61C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F057FC720E206AB00C0B61C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5F057FC920E206AB00C0B61C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F057FCA20E206AB00C0B61C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5F057FD320E209B900C0B61C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		5F057FD420E209B900C0B61C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		5F057FD520E209B900C0B61C /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		5F057FD820E20AF300C0B61C /* PlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerView.h; sourceTree = "<group>"; };
+		5F057FD920E20AF300C0B61C /* PlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerView.m; sourceTree = "<group>"; };
+		5F057FDF20E2178900C0B61C /* localvideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = localvideo.mp4; sourceTree = "<group>"; };
+		5F057FE120E21F3700C0B61C /* PlayerToolsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerToolsView.h; sourceTree = "<group>"; };
+		5F057FE220E21F3700C0B61C /* PlayerToolsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerToolsView.m; sourceTree = "<group>"; };
+		5F057FE420E21F5800C0B61C /* PlayerToolsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerToolsView.xib; sourceTree = "<group>"; };
+		5F057FE720E2200500C0B61C /* fullscreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fullscreen@2x.png"; sourceTree = "<group>"; };
+		5F057FE820E2200500C0B61C /* fullscreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fullscreen@3x.png"; sourceTree = "<group>"; };
+		5F057FE920E2200500C0B61C /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause@2x.png"; sourceTree = "<group>"; };
+		5F057FEA20E2200500C0B61C /* pause@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause@3x.png"; sourceTree = "<group>"; };
+		5F057FEB20E2200500C0B61C /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play@2x.png"; sourceTree = "<group>"; };
+		5F057FEC20E2200500C0B61C /* play@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play@3x.png"; sourceTree = "<group>"; };
+		5F057FED20E2200500C0B61C /* point@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point@2x.png"; sourceTree = "<group>"; };
+		5F057FEE20E2200500C0B61C /* point@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point@3x.png"; sourceTree = "<group>"; };
+		5F057FEF20E2200500C0B61C /* shrinkscreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shrinkscreen@2x.png"; sourceTree = "<group>"; };
+		5F057FF020E2200500C0B61C /* shrinkscreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shrinkscreen@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,11 +90,10 @@
 		5F057FB720E206AB00C0B61C /* CustomAVPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				5F057FD220E2099400C0B61C /* CustomAVPlayer */,
+				5F057FD120E2097B00C0B61C /* example */,
 				5F057FB820E206AB00C0B61C /* AppDelegate.h */,
 				5F057FB920E206AB00C0B61C /* AppDelegate.m */,
-				5F057FBB20E206AB00C0B61C /* ViewController.h */,
-				5F057FBC20E206AB00C0B61C /* ViewController.m */,
-				5F057FBE20E206AB00C0B61C /* Main.storyboard */,
 				5F057FC420E206AB00C0B61C /* Assets.xcassets */,
 				5F057FC620E206AB00C0B61C /* LaunchScreen.storyboard */,
 				5F057FC920E206AB00C0B61C /* Info.plist */,
@@ -72,6 +101,47 @@
 				5F057FC120E206AB00C0B61C /* CustomAVPlayer.xcdatamodeld */,
 			);
 			path = CustomAVPlayer;
+			sourceTree = "<group>";
+		};
+		5F057FD120E2097B00C0B61C /* example */ = {
+			isa = PBXGroup;
+			children = (
+				5F057FDF20E2178900C0B61C /* localvideo.mp4 */,
+				5F057FD320E209B900C0B61C /* ViewController.h */,
+				5F057FD420E209B900C0B61C /* ViewController.m */,
+				5F057FD520E209B900C0B61C /* ViewController.xib */,
+			);
+			path = example;
+			sourceTree = "<group>";
+		};
+		5F057FD220E2099400C0B61C /* CustomAVPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				5F057FE620E2200500C0B61C /* Images */,
+				5F057FD820E20AF300C0B61C /* PlayerView.h */,
+				5F057FD920E20AF300C0B61C /* PlayerView.m */,
+				5F057FE120E21F3700C0B61C /* PlayerToolsView.h */,
+				5F057FE220E21F3700C0B61C /* PlayerToolsView.m */,
+				5F057FE420E21F5800C0B61C /* PlayerToolsView.xib */,
+			);
+			path = CustomAVPlayer;
+			sourceTree = "<group>";
+		};
+		5F057FE620E2200500C0B61C /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5F057FE720E2200500C0B61C /* fullscreen@2x.png */,
+				5F057FE820E2200500C0B61C /* fullscreen@3x.png */,
+				5F057FE920E2200500C0B61C /* pause@2x.png */,
+				5F057FEA20E2200500C0B61C /* pause@3x.png */,
+				5F057FEB20E2200500C0B61C /* play@2x.png */,
+				5F057FEC20E2200500C0B61C /* play@3x.png */,
+				5F057FED20E2200500C0B61C /* point@2x.png */,
+				5F057FEE20E2200500C0B61C /* point@3x.png */,
+				5F057FEF20E2200500C0B61C /* shrinkscreen@2x.png */,
+				5F057FF020E2200500C0B61C /* shrinkscreen@3x.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,9 +202,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F057FF620E2200500C0B61C /* play@3x.png in Resources */,
+				5F057FF520E2200500C0B61C /* play@2x.png in Resources */,
 				5F057FC820E206AB00C0B61C /* LaunchScreen.storyboard in Resources */,
+				5F057FF720E2200500C0B61C /* point@2x.png in Resources */,
+				5F057FF120E2200500C0B61C /* fullscreen@2x.png in Resources */,
+				5F057FF920E2200500C0B61C /* shrinkscreen@2x.png in Resources */,
+				5F057FD720E209B900C0B61C /* ViewController.xib in Resources */,
 				5F057FC520E206AB00C0B61C /* Assets.xcassets in Resources */,
-				5F057FC020E206AB00C0B61C /* Main.storyboard in Resources */,
+				5F057FF420E2200500C0B61C /* pause@3x.png in Resources */,
+				5F057FFA20E2200500C0B61C /* shrinkscreen@3x.png in Resources */,
+				5F057FE520E21F5800C0B61C /* PlayerToolsView.xib in Resources */,
+				5F057FE020E2178900C0B61C /* localvideo.mp4 in Resources */,
+				5F057FF820E2200500C0B61C /* point@3x.png in Resources */,
+				5F057FF220E2200500C0B61C /* fullscreen@3x.png in Resources */,
+				5F057FF320E2200500C0B61C /* pause@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,23 +228,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F057FC320E206AB00C0B61C /* CustomAVPlayer.xcdatamodeld in Sources */,
-				5F057FBD20E206AB00C0B61C /* ViewController.m in Sources */,
+				5F057FE320E21F3700C0B61C /* PlayerToolsView.m in Sources */,
 				5F057FCB20E206AB00C0B61C /* main.m in Sources */,
+				5F057FD620E209B900C0B61C /* ViewController.m in Sources */,
 				5F057FBA20E206AB00C0B61C /* AppDelegate.m in Sources */,
+				5F057FDA20E20AF300C0B61C /* PlayerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		5F057FBE20E206AB00C0B61C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5F057FBF20E206AB00C0B61C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5F057FC620E206AB00C0B61C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -285,6 +361,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XV89F2LKD5;
 				INFOPLIST_FILE = CustomAVPlayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = zjl.CustomAVPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -299,6 +376,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XV89F2LKD5;
 				INFOPLIST_FILE = CustomAVPlayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = zjl.CustomAVPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
