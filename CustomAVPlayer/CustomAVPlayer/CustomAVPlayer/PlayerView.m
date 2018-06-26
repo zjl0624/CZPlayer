@@ -121,9 +121,8 @@
 			[self.toolsView.PlayButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal];
 			if (self.isEnd) {
 				[self.player seekToTime:CMTimeMakeWithSeconds(0, NSEC_PER_SEC) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
-			}else {
-			    [_player play];
 			}
+				[_player play];
 		}else {
 			[_player pause];
 			[self.toolsView.PlayButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
@@ -178,6 +177,7 @@
 	[self.toolsView.PlayButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
 	self.toolsView.slider.value = 0;
 	self.isEnd = YES;
+	self.toolsView.currentTimeLabel.text = @"00:00";
 }
 
 - (void)removeNoti {
