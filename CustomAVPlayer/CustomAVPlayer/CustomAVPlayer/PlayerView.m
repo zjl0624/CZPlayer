@@ -11,7 +11,7 @@
 #import "PlayerToolsView.h"
 
 #define ToolsViewHeightRadio 0.2  //播放工具条的高度和整个播放器高度的比
-@interface PlayerView()
+@interface PlayerView()<UIGestureRecognizerDelegate>
 @property (nonatomic,strong) AVPlayer *player;
 @property (nonatomic,strong) AVPlayerLayer *playerLayer;
 @property (nonatomic,strong) AVPlayerItem *playerItem;
@@ -19,6 +19,7 @@
 @property (nonatomic,strong) PlayerToolsView *toolsView;
 @property (nonatomic,assign) CGFloat totalSeconds;
 @property (nonatomic,assign) BOOL isEnd;
+@property (nonatomic,strong) UIButton *hideToolsViewButton;
 @end
 @implementation PlayerView
 
@@ -26,6 +27,11 @@
 - (instancetype)initWithFrame:(CGRect)frame{
 	self = [super initWithFrame:frame];
 	if (self) {
+		
+		_hideToolsViewButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), (1 - ToolsViewHeightRadio) * CGRectGetHeight(self.frame))];
+		[self addSubview:_hideToolsViewButton];
+		_hideToolsViewButton.backgroundColor = [UIColor clearColor];
+		[_hideToolsViewButton addTarget:self action:@selector(clickHideToolsViewBtn) forControlEvents:UIControlEventTouchUpInside];
 		
 		[self createTapGesture];
 		
@@ -41,6 +47,11 @@
 	self.toolsView.frame = CGRectMake(0, (1 - ToolsViewHeightRadio) * CGRectGetHeight(self.frame), CGRectGetWidth(self.frame), ToolsViewHeightRadio * CGRectGetHeight(self.frame));
 	[self addSubview:self.toolsView];
 	[self.toolsView.PlayButton addTarget:self action:@selector(clickPlayBtn) forControlEvents:UIControlEventTouchUpInside];
+	[self.toolsView.slider setThumbImage:[UIImage imageNamed:@"point"] forState:UIControlStateNormal];
+	
+	[self.toolsView.slider addTarget:self action:@selector(touchDownSlider) forControlEvents:UIControlEventTouchDown];
+	[self.toolsView.slider addTarget:self action:@selector(sliderValueChanged) forControlEvents:UIControlEventValueChanged];
+	[self.toolsView.slider addTarget:self action:@selector(touchupSlider) forControlEvents:UIControlEventTouchUpInside];
 	[self resetToolsView];
 	
 }
@@ -80,7 +91,7 @@
 	_playerLayer.videoGravity = AVLayerVideoGravityResize;
 	// 7、获取播放持续时间
 	//	NSLog(@"%lld", _playerItem.duration.value);
-	[self.layer addSublayer:_playerLayer];
+//	[self.layer addSublayer:_playerLayer];
 	[self.layer insertSublayer:_playerLayer below:self.toolsView.layer];
 	
 	[self addKVOObserver];
@@ -95,7 +106,7 @@
 		weakSelf.toolsView.currentTimeLabel.text = [weakSelf secondsToString:[weakSelf getTimeToSeconds:time]];
 		weakSelf.toolsView.slider.value = [weakSelf getTimeToSeconds:time] / self.totalSeconds;
 //		[weakSelf pv_setTimeLabel];
-		NSLog(@"%lld",time.value);
+//		NSLog(@"current=%lld",time.value);
 //		NSTimeInterval totalTime = CMTimeGetSeconds(weakSelf.player.currentItem.duration);
 //		weakSelf.toolView.slider.value = time.value/time.timescale/totalTime;//time.value/time.timescale是当前时间
 	}];
@@ -106,14 +117,30 @@
 - (void)createTapGesture {
 	_tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPlayer:)];
 	self.userInteractionEnabled = YES;
+	_tapGes.delegate = self;
 	[self addGestureRecognizer:_tapGes];
 }
 
 - (void)tapPlayer:(UITapGestureRecognizer *)ges{
-	self.toolsView.hidden = !self.toolsView.hidden;
+
+	self.toolsView.hidden = NO;
+	self.hideToolsViewButton.hidden = NO;
+}
+#pragma mark - UIGestureRecognizerDelegate
+-(BOOL)gestureRecognizer:(UIGestureRecognizer*)gestureRecognizer shouldReceiveTouch:(UITouch*)touch {
+	if([touch.view isKindOfClass:[UISlider class]]){
+		return NO;
+	}else{
+		return YES;
+	}
 }
 
 #pragma mark - Button Action
+- (void)clickHideToolsViewBtn {
+	self.toolsView.hidden = YES;
+	self.hideToolsViewButton.hidden = YES;
+}
+
 - (void)clickPlayBtn {
 	if (_player && _player.currentItem.status == AVPlayerStatusReadyToPlay) {
 		if (_player.rate == 0) {
@@ -129,7 +156,25 @@
 		}
 	}
 }
+#pragma mark - slider
+- (void)touchDownSlider {
+	NSLog(@"按下slider");
+	[_player pause];
+}
 
+- (void)sliderValueChanged {
+	
+	self.toolsView.currentTimeLabel.text = [self secondsToString:self.totalSeconds * self.toolsView.slider.value];
+}
+
+- (void)touchupSlider {
+	NSLog(@"松开slider");
+	_isEnd = NO;
+	[self.player seekToTime:CMTimeMake(self.totalSeconds * self.toolsView.slider.value * 1000000000, NSEC_PER_SEC) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
+	[self.toolsView.PlayButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal];
+	[self.player play];
+
+}
 #pragma mark - KVO
 - (void)addKVOObserver {
 	[_playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];// 监听status属性
@@ -209,10 +254,4 @@
 	
 }
 
-- (void)restartPlay {
-
-
-
-    [self.toolsView.PlayButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal];
-}
 @end
