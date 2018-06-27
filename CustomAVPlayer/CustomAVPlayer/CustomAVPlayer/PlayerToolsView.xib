@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,21 +16,21 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8N-tL-qTU">
-                    <rect key="frame" x="0.0" y="0.0" width="133" height="133"/>
+                    <rect key="frame" x="0.0" y="0.0" width="50" height="133"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="r8N-tL-qTU" secondAttribute="height" multiplier="1:1" id="S0Y-8t-2ci"/>
+                        <constraint firstAttribute="width" constant="50" id="FXM-js-gPg"/>
                     </constraints>
                     <state key="normal" image="play.png"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Kh-b9-v41">
-                    <rect key="frame" x="473" y="0.0" width="133" height="133"/>
+                    <rect key="frame" x="556" y="0.0" width="50" height="133"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="1Kh-b9-v41" secondAttribute="height" multiplier="1:1" id="Ecn-Dj-N63"/>
+                        <constraint firstAttribute="width" constant="50" id="9my-7n-aE9"/>
                     </constraints>
                     <state key="normal" image="shrinkscreen.png"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4q-YS-UYw">
-                    <rect key="frame" x="133" y="0.0" width="55" height="133"/>
+                    <rect key="frame" x="50" y="0.0" width="55" height="133"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="55" id="J6N-16-Whr"/>
                     </constraints>
@@ -40,7 +39,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9x1-g1-0RL">
-                    <rect key="frame" x="418" y="0.0" width="55" height="133"/>
+                    <rect key="frame" x="501" y="0.0" width="55" height="133"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="55" id="msR-cB-yxd"/>
                     </constraints>
@@ -49,7 +48,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Rce-G6-t7t">
-                    <rect key="frame" x="196" y="51.5" width="214" height="31"/>
+                    <rect key="frame" x="113" y="51.5" width="380" height="31"/>
                 </slider>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -74,6 +73,7 @@
             <connections>
                 <outlet property="PlayButton" destination="r8N-tL-qTU" id="bM4-43-Zxy"/>
                 <outlet property="currentTimeLabel" destination="R4q-YS-UYw" id="CrG-T5-lod"/>
+                <outlet property="fullButtonToTrailing" destination="9sF-p2-cE2" id="abC-dp-XLJ"/>
                 <outlet property="fullScreenButton" destination="1Kh-b9-v41" id="1JQ-AZ-xyB"/>
                 <outlet property="slider" destination="Rce-G6-t7t" id="wwN-YI-K5A"/>
                 <outlet property="totalTimeLabel" destination="9x1-g1-0RL" id="ibv-rb-Jp3"/>
