@@ -19,6 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[self.navigationController.navigationBar setHidden:YES];
 	[self initPlayerView];
 }
 
@@ -30,10 +31,10 @@
 
 #pragma mark - Init
 - (void)initPlayerView {
-	self.playerView = [[PlayerView alloc] initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, 200)];
+	self.playerView = [[PlayerView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 200)];
 	[self.view addSubview:self.playerView];
-//	NSString *path = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"localvideo.mp4"];
-//	self.playerView.sourcePath = path;
+	NSString *path = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"localvideo.mp4"];
+	self.playerView.sourcePath = path;
 }
 
 #pragma mark - Action

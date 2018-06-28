@@ -15,7 +15,9 @@ typedef NS_ENUM(NSInteger,FullScreenState){
 	animating //正在变化状态中
 };
 #define ToolsViewHeightRadio 0.2  //播放工具条的高度和整个播放器高度的比
-@interface PlayerView()<UIGestureRecognizerDelegate>
+@interface PlayerView()<UIGestureRecognizerDelegate> {
+	CGRect smallPlayerViewFrame;
+}
 @property (nonatomic,strong) AVPlayer *player;
 @property (nonatomic,strong) AVPlayerLayer *playerLayer;
 @property (nonatomic,strong) AVPlayerItem *playerItem;
@@ -32,11 +34,13 @@ typedef NS_ENUM(NSInteger,FullScreenState){
 - (instancetype)initWithFrame:(CGRect)frame{
 	self = [super initWithFrame:frame];
 	if (self) {
-		
+		smallPlayerViewFrame = frame;
 		_hideToolsViewButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame),  CGRectGetHeight(self.frame) - 50)];
 		[self addSubview:_hideToolsViewButton];
 		_hideToolsViewButton.backgroundColor = [UIColor clearColor];
 		[_hideToolsViewButton addTarget:self action:@selector(clickHideToolsViewBtn) forControlEvents:UIControlEventTouchUpInside];
+		
+		[[UIApplication sharedApplication] setStatusBarHidden:NO];
 		
 		[self createTapGesture];
 		
@@ -51,6 +55,14 @@ typedef NS_ENUM(NSInteger,FullScreenState){
 	self.toolsView = [PlayerToolsView instanceView];
 	self.toolsView.frame = CGRectMake(0,CGRectGetHeight(self.frame) - 50, CGRectGetWidth(self.frame), 50);
 	[self addSubview:self.toolsView];
+	
+	
+	self.toolsView.PlayButton.frame = CGRectMake(0, 0, 50, 50);
+	self.toolsView.currentTimeLabel.frame = CGRectMake(5 + CGRectGetMaxX(self.toolsView.PlayButton.frame), 0, 55, 50);
+	self.toolsView.fullScreenButton.frame = CGRectMake(CGRectGetWidth(self.frame) - 50, 0, 50, 50);
+	self.toolsView.totalTimeLabel.frame = CGRectMake(CGRectGetMinX(self.toolsView.fullScreenButton.frame) - 60, 0, 55, 50);
+	self.toolsView.slider.frame = CGRectMake(5 + CGRectGetMaxX(self.toolsView.currentTimeLabel.frame), 0, CGRectGetMinX(self.toolsView.totalTimeLabel.frame) - CGRectGetMaxX(self.toolsView.currentTimeLabel.frame) - 10, 50);
+	
 	[self.toolsView.PlayButton addTarget:self action:@selector(clickPlayBtn) forControlEvents:UIControlEventTouchUpInside];
 	[self.toolsView.slider setThumbImage:[UIImage imageNamed:@"point"] forState:UIControlStateNormal];
 	
@@ -130,8 +142,16 @@ typedef NS_ENUM(NSInteger,FullScreenState){
 
 - (void)tapPlayer:(UITapGestureRecognizer *)ges{
 
-	self.toolsView.hidden = NO;
-	self.hideToolsViewButton.hidden = NO;
+
+	if (self.screenState == smallScreen) {
+		[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+	}
+	[UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+		self.toolsView.alpha = 1;
+	} completion:^(BOOL finished) {
+		self.toolsView.hidden = NO;
+		self.hideToolsViewButton.hidden = NO;
+	}];
 }
 #pragma mark - UIGestureRecognizerDelegate
 -(BOOL)gestureRecognizer:(UIGestureRecognizer*)gestureRecognizer shouldReceiveTouch:(UITouch*)touch {
@@ -144,8 +164,14 @@ typedef NS_ENUM(NSInteger,FullScreenState){
 
 #pragma mark - Button Action
 - (void)clickHideToolsViewBtn {
-	self.toolsView.hidden = YES;
-	self.hideToolsViewButton.hidden = YES;
+
+	[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+	[UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+		self.toolsView.alpha = 0;
+	} completion:^(BOOL finished) {
+		self.toolsView.hidden = YES;
+		self.hideToolsViewButton.hidden = YES;
+	}];
 }
 
 - (void)clickPlayBtn {
@@ -167,24 +193,42 @@ typedef NS_ENUM(NSInteger,FullScreenState){
 - (void)clickFullScreenButton {
 	if (self.screenState == smallScreen) {
 		self.screenState = animating;
+		[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
 //		CGRect rectInWindow = [self convertRect:self.bounds toView:[UIApplication sharedApplication].keyWindow];
 //		[self removeFromSuperview];
 //		self.frame = rectInWindow;
 //		[[UIApplication sharedApplication].keyWindow addSubview:self];
-		[UIView animateWithDuration:3 delay:0 options:UIViewAnimationOptionLayoutSubviews animations:^{
+		[UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionLayoutSubviews animations:^{
 			self.transform = CGAffineTransformMakeRotation(M_PI_2);
-			self.bounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-//			self.center = CGPointMake(CGRectGetMidX(self.superview.bounds), CGRectGetMidY(self.superview.bounds));
-			self.toolsView.frame = CGRectMake(0, 0, 50, [UIScreen mainScreen].bounds.size.height);
-			_playerLayer.frame = CGRectMake(50, 0, [UIScreen mainScreen].bounds.size.width - 50, [UIScreen mainScreen].bounds.size.height);
-//			self.toolsView.fullButtonToTrailing = 0;
-//			[self.superview layoutIfNeeded];
+			self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+			self.toolsView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.width - 50, [UIScreen mainScreen].bounds.size.height, 50);
+			_playerLayer.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
+			self.hideToolsViewButton.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width - 50);
+			self.toolsView.fullScreenButton.frame = CGRectMake(CGRectGetHeight(self.frame) - 50, 0, 50, 50);
+			self.toolsView.totalTimeLabel.frame = CGRectMake(CGRectGetMinX(self.toolsView.fullScreenButton.frame) - 60, 0, 55, 50);
+			self.toolsView.slider.frame = CGRectMake(5 + CGRectGetMaxX(self.toolsView.currentTimeLabel.frame), 0, CGRectGetMinX(self.toolsView.totalTimeLabel.frame) - CGRectGetMaxX(self.toolsView.currentTimeLabel.frame) - 10, 50);
+			[self.toolsView layoutSubviews];
 		} completion:^(BOOL finished) {
 			self.screenState = fullScreen;
 			[self.toolsView.fullScreenButton setImage:[UIImage imageNamed:@"shrinkscreen.png"] forState:UIControlStateNormal];
 		}];
 	}else if (self.screenState == fullScreen){
-		
+		self.screenState = animating;
+		[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+		[UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionLayoutSubviews animations:^{
+			self.transform = CGAffineTransformIdentity;
+			self.frame = smallPlayerViewFrame;
+			self.toolsView.frame = CGRectMake(0,CGRectGetHeight(self.frame) - 50, CGRectGetWidth(self.frame), 50);
+			_playerLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
+			self.hideToolsViewButton.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame),  CGRectGetHeight(self.frame) - 50);
+			self.toolsView.fullScreenButton.frame = CGRectMake(CGRectGetWidth(self.frame) - 50, 0, 50, 50);
+			self.toolsView.totalTimeLabel.frame = CGRectMake(CGRectGetMinX(self.toolsView.fullScreenButton.frame) - 60, 0, 55, 50);
+			self.toolsView.slider.frame = CGRectMake(5 + CGRectGetMaxX(self.toolsView.currentTimeLabel.frame), 0, CGRectGetMinX(self.toolsView.totalTimeLabel.frame) - CGRectGetMaxX(self.toolsView.currentTimeLabel.frame) - 10, 50);
+			[self layoutSubviews];
+		} completion:^(BOOL finished) {
+			self.screenState = smallScreen;
+			[self.toolsView.fullScreenButton setImage:[UIImage imageNamed:@"fullscreen.png"] forState:UIControlStateNormal];
+		}];
 	}
 //	[[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:YES];
 }

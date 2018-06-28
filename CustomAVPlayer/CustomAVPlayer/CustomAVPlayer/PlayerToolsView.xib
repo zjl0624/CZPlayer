@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -15,65 +15,40 @@
             <rect key="frame" x="0.0" y="0.0" width="606" height="133"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8N-tL-qTU">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="r8N-tL-qTU">
                     <rect key="frame" x="0.0" y="0.0" width="50" height="133"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="50" id="FXM-js-gPg"/>
-                    </constraints>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" image="play.png"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Kh-b9-v41">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1Kh-b9-v41">
                     <rect key="frame" x="556" y="0.0" width="50" height="133"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="50" id="9my-7n-aE9"/>
-                    </constraints>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" image="shrinkscreen.png"/>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4q-YS-UYw">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="R4q-YS-UYw">
                     <rect key="frame" x="50" y="0.0" width="55" height="133"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="55" id="J6N-16-Whr"/>
-                    </constraints>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9x1-g1-0RL">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9x1-g1-0RL">
                     <rect key="frame" x="501" y="0.0" width="55" height="133"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="55" id="msR-cB-yxd"/>
-                    </constraints>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Rce-G6-t7t">
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="Rce-G6-t7t">
                     <rect key="frame" x="113" y="51.5" width="380" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </slider>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstAttribute="bottom" secondItem="r8N-tL-qTU" secondAttribute="bottom" id="4oN-my-PQh"/>
-                <constraint firstItem="R4q-YS-UYw" firstAttribute="leading" secondItem="r8N-tL-qTU" secondAttribute="trailing" id="60Y-Jx-ciO"/>
-                <constraint firstAttribute="trailing" secondItem="1Kh-b9-v41" secondAttribute="trailing" id="9sF-p2-cE2"/>
-                <constraint firstAttribute="bottom" secondItem="9x1-g1-0RL" secondAttribute="bottom" id="CXA-IJ-05m"/>
-                <constraint firstItem="r8N-tL-qTU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Usb-qh-sDL"/>
-                <constraint firstAttribute="bottom" secondItem="1Kh-b9-v41" secondAttribute="bottom" id="cQe-EW-wxu"/>
-                <constraint firstItem="9x1-g1-0RL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="di3-Va-Fm9"/>
-                <constraint firstItem="1Kh-b9-v41" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="iGd-ki-lTk"/>
-                <constraint firstItem="1Kh-b9-v41" firstAttribute="leading" secondItem="9x1-g1-0RL" secondAttribute="trailing" id="jzO-f9-P75"/>
-                <constraint firstItem="r8N-tL-qTU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nwT-qg-a6S"/>
-                <constraint firstItem="Rce-G6-t7t" firstAttribute="leading" secondItem="R4q-YS-UYw" secondAttribute="trailing" constant="10" id="rrK-p0-gE4"/>
-                <constraint firstItem="Rce-G6-t7t" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="s38-Xb-xz2"/>
-                <constraint firstAttribute="bottom" secondItem="R4q-YS-UYw" secondAttribute="bottom" id="tGM-Lr-70k"/>
-                <constraint firstItem="9x1-g1-0RL" firstAttribute="leading" secondItem="Rce-G6-t7t" secondAttribute="trailing" constant="10" id="xKM-Oz-sIP"/>
-                <constraint firstItem="R4q-YS-UYw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ySF-Lw-rPP"/>
-            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="PlayButton" destination="r8N-tL-qTU" id="bM4-43-Zxy"/>
                 <outlet property="currentTimeLabel" destination="R4q-YS-UYw" id="CrG-T5-lod"/>
-                <outlet property="fullButtonToTrailing" destination="9sF-p2-cE2" id="abC-dp-XLJ"/>
                 <outlet property="fullScreenButton" destination="1Kh-b9-v41" id="1JQ-AZ-xyB"/>
                 <outlet property="slider" destination="Rce-G6-t7t" id="wwN-YI-K5A"/>
                 <outlet property="totalTimeLabel" destination="9x1-g1-0RL" id="ibv-rb-Jp3"/>
