@@ -1,7 +1,7 @@
 //
 //  PlayerView.m
 //  CustomAVPlayer
-//
+//  工程必须开启Device Orientation 横屏功能才能正常全屏
 //  Created by zjl on 2018/6/26.
 //  Copyright © 2018年 zjl. All rights reserved.
 //
@@ -40,11 +40,13 @@ typedef NS_ENUM(NSInteger,FullScreenState){
 		_hideToolsViewButton.backgroundColor = [UIColor clearColor];
 		[_hideToolsViewButton addTarget:self action:@selector(clickHideToolsViewBtn) forControlEvents:UIControlEventTouchUpInside];
 		
-		[[UIApplication sharedApplication] setStatusBarHidden:NO];
+//		[[UIApplication sharedApplication] setStatusBarHidden:NO];
 		
 		[self createTapGesture];
 		
 		[self createToolsView];
+		
+		[self noti];
 
 	}
 	return self;
@@ -143,9 +145,9 @@ typedef NS_ENUM(NSInteger,FullScreenState){
 - (void)tapPlayer:(UITapGestureRecognizer *)ges{
 
 
-	if (self.screenState == smallScreen) {
+//	if (self.screenState == smallScreen) {
 		[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-	}
+//	}
 	[UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
 		self.toolsView.alpha = 1;
 	} completion:^(BOOL finished) {
@@ -192,45 +194,75 @@ typedef NS_ENUM(NSInteger,FullScreenState){
 
 - (void)clickFullScreenButton {
 	if (self.screenState == smallScreen) {
-		self.screenState = animating;
-		[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
-//		CGRect rectInWindow = [self convertRect:self.bounds toView:[UIApplication sharedApplication].keyWindow];
-//		[self removeFromSuperview];
-//		self.frame = rectInWindow;
-//		[[UIApplication sharedApplication].keyWindow addSubview:self];
-		[UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionLayoutSubviews animations:^{
-			self.transform = CGAffineTransformMakeRotation(M_PI_2);
-			self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-			self.toolsView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.width - 50, [UIScreen mainScreen].bounds.size.height, 50);
-			_playerLayer.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
-			self.hideToolsViewButton.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width - 50);
-			self.toolsView.fullScreenButton.frame = CGRectMake(CGRectGetHeight(self.frame) - 50, 0, 50, 50);
-			self.toolsView.totalTimeLabel.frame = CGRectMake(CGRectGetMinX(self.toolsView.fullScreenButton.frame) - 60, 0, 55, 50);
-			self.toolsView.slider.frame = CGRectMake(5 + CGRectGetMaxX(self.toolsView.currentTimeLabel.frame), 0, CGRectGetMinX(self.toolsView.totalTimeLabel.frame) - CGRectGetMaxX(self.toolsView.currentTimeLabel.frame) - 10, 50);
-			[self.toolsView layoutSubviews];
-		} completion:^(BOOL finished) {
-			self.screenState = fullScreen;
-			[self.toolsView.fullScreenButton setImage:[UIImage imageNamed:@"shrinkscreen.png"] forState:UIControlStateNormal];
-		}];
+		[self fullScreenAnimation];
 	}else if (self.screenState == fullScreen){
-		self.screenState = animating;
-		[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-		[UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionLayoutSubviews animations:^{
-			self.transform = CGAffineTransformIdentity;
-			self.frame = smallPlayerViewFrame;
-			self.toolsView.frame = CGRectMake(0,CGRectGetHeight(self.frame) - 50, CGRectGetWidth(self.frame), 50);
-			_playerLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
-			self.hideToolsViewButton.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame),  CGRectGetHeight(self.frame) - 50);
-			self.toolsView.fullScreenButton.frame = CGRectMake(CGRectGetWidth(self.frame) - 50, 0, 50, 50);
-			self.toolsView.totalTimeLabel.frame = CGRectMake(CGRectGetMinX(self.toolsView.fullScreenButton.frame) - 60, 0, 55, 50);
-			self.toolsView.slider.frame = CGRectMake(5 + CGRectGetMaxX(self.toolsView.currentTimeLabel.frame), 0, CGRectGetMinX(self.toolsView.totalTimeLabel.frame) - CGRectGetMaxX(self.toolsView.currentTimeLabel.frame) - 10, 50);
-			[self layoutSubviews];
-		} completion:^(BOOL finished) {
-			self.screenState = smallScreen;
-			[self.toolsView.fullScreenButton setImage:[UIImage imageNamed:@"fullscreen.png"] forState:UIControlStateNormal];
-		}];
+		[self smallScreenAnimation];
 	}
 //	[[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:YES];
+}
+
+- (void)fullScreenAnimation {
+	self.screenState = animating;
+	//		[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+	//		CGRect rectInWindow = [self convertRect:self.bounds toView:[UIApplication sharedApplication].keyWindow];
+	//		[self removeFromSuperview];
+	//		self.frame = rectInWindow;
+	//		[[UIApplication sharedApplication].keyWindow addSubview:self];
+	NSNumber *orientationUnknown = [NSNumber numberWithInt:UIInterfaceOrientationUnknown];
+	[[UIDevice currentDevice] setValue:orientationUnknown forKey:@"orientation"];
+	
+	NSNumber *orientationTarget = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight];
+	[[UIDevice currentDevice] setValue:orientationTarget forKey:@"orientation"];
+	self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+	self.toolsView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 50, [UIScreen mainScreen].bounds.size.width, 50);
+	_playerLayer.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+	self.hideToolsViewButton.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 50);
+	self.toolsView.fullScreenButton.frame = CGRectMake(CGRectGetWidth(self.frame) - 50, 0, 50, 50);
+	self.toolsView.totalTimeLabel.frame = CGRectMake(CGRectGetMinX(self.toolsView.fullScreenButton.frame) - 60, 0, 55, 50);
+	self.toolsView.slider.frame = CGRectMake(5 + CGRectGetMaxX(self.toolsView.currentTimeLabel.frame), 0, CGRectGetMinX(self.toolsView.totalTimeLabel.frame) - CGRectGetMaxX(self.toolsView.currentTimeLabel.frame) - 10, 50);
+	self.screenState = fullScreen;
+	[self.toolsView.fullScreenButton setImage:[UIImage imageNamed:@"shrinkscreen.png"] forState:UIControlStateNormal];
+	[[UIApplication sharedApplication] setStatusBarHidden:self.toolsView.hidden];
+}
+
+- (void)smallScreenAnimation {
+	self.screenState = animating;
+	NSNumber *orientationUnknown = [NSNumber numberWithInt:UIInterfaceOrientationUnknown];
+	[[UIDevice currentDevice] setValue:orientationUnknown forKey:@"orientation"];
+	
+	NSNumber *orientationTarget = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+	[[UIDevice currentDevice] setValue:orientationTarget forKey:@"orientation"];
+	self.frame = smallPlayerViewFrame;
+	self.toolsView.frame = CGRectMake(0,CGRectGetHeight(self.frame) - 50, CGRectGetWidth(self.frame), 50);
+	_playerLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
+	self.hideToolsViewButton.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame),  CGRectGetHeight(self.frame) - 50);
+	self.toolsView.fullScreenButton.frame = CGRectMake(CGRectGetWidth(self.frame) - 50, 0, 50, 50);
+	self.toolsView.totalTimeLabel.frame = CGRectMake(CGRectGetMinX(self.toolsView.fullScreenButton.frame) - 60, 0, 55, 50);
+	self.toolsView.slider.frame = CGRectMake(5 + CGRectGetMaxX(self.toolsView.currentTimeLabel.frame), 0, CGRectGetMinX(self.toolsView.totalTimeLabel.frame) - CGRectGetMaxX(self.toolsView.currentTimeLabel.frame) - 10, 50);
+	self.screenState = smallScreen;
+	[self.toolsView.fullScreenButton setImage:[UIImage imageNamed:@"fullscreen.png"] forState:UIControlStateNormal];
+
+}
+#pragma mark - auto rotation
+- (void)noti{
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarOrientationChange:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+}
+
+- (void)statusBarOrientationChange:(NSNotification *)notification{
+	UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+	if (orientation ==UIInterfaceOrientationLandscapeRight)// home键靠右
+	{
+		[self fullScreenAnimation];
+		NSLog(@"home键靠右");
+	}
+	if (orientation ==UIInterfaceOrientationLandscapeLeft)// home键靠左
+	{
+		NSLog(@"home键靠左");
+	}
+	if (orientation ==UIInterfaceOrientationPortrait){
+		[self smallScreenAnimation];
+		NSLog(@"竖直方向");
+	}
 }
 #pragma mark - slider
 - (void)touchDownSlider {
@@ -329,5 +361,7 @@ typedef NS_ENUM(NSInteger,FullScreenState){
 	return resultString;
 	
 }
+
+
 
 @end

@@ -19,7 +19,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[self.navigationController.navigationBar setHidden:YES];
 	[self initPlayerView];
 }
 
@@ -47,4 +46,5 @@
 	NSString *path = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"localvideo.mp4"];
 	self.playerView.sourcePath = path;
 }
+
 @end
