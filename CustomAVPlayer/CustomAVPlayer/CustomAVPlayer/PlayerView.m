@@ -14,6 +14,8 @@ typedef NS_ENUM(NSInteger,FullScreenState){
 	fullScreen,//全屏状态
 	animating //正在变化状态中
 };
+
+//http://streams.videolan.org/streams/mp4/Mr_MrsSmith-h264_aac.mp4
 #define ToolsViewHeightRadio 0.2  //播放工具条的高度和整个播放器高度的比
 @interface PlayerView()<UIGestureRecognizerDelegate> {
 	CGRect smallPlayerViewFrame;
@@ -96,8 +98,13 @@ typedef NS_ENUM(NSInteger,FullScreenState){
 
 	}
 	// 1、获取媒体资源地址
-	NSURL *sourceMovieURL = [NSURL fileURLWithPath:_sourcePath];
-	
+	NSURL *sourceMovieURL;
+	if ([_sourcePath hasPrefix:@"http"]) {
+		sourceMovieURL = [NSURL URLWithString:_sourcePath];
+	}else {
+		sourceMovieURL = [NSURL fileURLWithPath:_sourcePath];
+	}
+
 	// 2、创建AVPlayerItem
 	_playerItem = [AVPlayerItem playerItemWithURL:sourceMovieURL];
 	// 3、根据AVPlayerItem创建媒体播放器

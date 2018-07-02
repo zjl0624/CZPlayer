@@ -19,16 +19,16 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4WC-ya-Rdw">
-                    <rect key="frame" x="57" y="578" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4WC-ya-Rdw">
+                    <rect key="frame" x="57" y="578" width="62" height="30"/>
+                    <state key="normal" title="本地视频"/>
                     <connections>
                         <action selector="OneAction:" destination="-1" eventType="touchUpInside" id="eps-6g-4Jx"/>
                     </connections>
                 </button>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6p-kQ-zPw">
-                    <rect key="frame" x="260" y="578" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6p-kQ-zPw">
+                    <rect key="frame" x="244" y="578" width="62" height="30"/>
+                    <state key="normal" title="网络视频"/>
                     <connections>
                         <action selector="twoAction:" destination="-1" eventType="touchUpInside" id="fxi-pM-ClS"/>
                     </connections>
