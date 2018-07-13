@@ -33,7 +33,7 @@
 	self.playerView = [[PlayerView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 200)];
 	[self.view addSubview:self.playerView];
 	NSString *path = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"localvideo.mp4"];
-	self.playerView.sourcePath = NetMp4Url;
+	self.playerView.sourcePath = path;
 }
 
 #pragma mark - Action
