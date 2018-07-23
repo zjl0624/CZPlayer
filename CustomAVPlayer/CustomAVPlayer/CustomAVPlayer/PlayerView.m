@@ -67,6 +67,8 @@ typedef NS_ENUM(NSInteger,FullScreenState){
 	self.toolsView.totalTimeLabel.frame = CGRectMake(CGRectGetMinX(self.toolsView.fullScreenButton.frame) - 60, 0, 55, 50);
 	self.toolsView.slider.frame = CGRectMake(5 + CGRectGetMaxX(self.toolsView.currentTimeLabel.frame), 0, CGRectGetMinX(self.toolsView.totalTimeLabel.frame) - CGRectGetMaxX(self.toolsView.currentTimeLabel.frame) - 10, 50);
 	
+	self.toolsView.loadProgressView.frame = CGRectMake(CGRectGetMinX(self.toolsView.slider.frame) + 2, CGRectGetHeight(self.toolsView.slider.frame)/2 - 1, CGRectGetWidth(self.toolsView.slider.frame) - 4, 2);
+	
 	[self.toolsView.PlayButton addTarget:self action:@selector(clickPlayBtn) forControlEvents:UIControlEventTouchUpInside];
 	[self.toolsView.slider setThumbImage:[UIImage imageNamed:@"point"] forState:UIControlStateNormal];
 	
@@ -227,6 +229,7 @@ typedef NS_ENUM(NSInteger,FullScreenState){
 	self.toolsView.fullScreenButton.frame = CGRectMake(CGRectGetWidth(self.frame) - 50, 0, 50, 50);
 	self.toolsView.totalTimeLabel.frame = CGRectMake(CGRectGetMinX(self.toolsView.fullScreenButton.frame) - 60, 0, 55, 50);
 	self.toolsView.slider.frame = CGRectMake(5 + CGRectGetMaxX(self.toolsView.currentTimeLabel.frame), 0, CGRectGetMinX(self.toolsView.totalTimeLabel.frame) - CGRectGetMaxX(self.toolsView.currentTimeLabel.frame) - 10, 50);
+	self.toolsView.loadProgressView.frame = CGRectMake(CGRectGetMinX(self.toolsView.slider.frame) + 2, CGRectGetHeight(self.toolsView.slider.frame)/2 - 1, CGRectGetWidth(self.toolsView.slider.frame) - 4, 2);
 	self.screenState = fullScreen;
 	[self.toolsView.fullScreenButton setImage:[UIImage imageNamed:@"shrinkscreen.png"] forState:UIControlStateNormal];
 	[[UIApplication sharedApplication] setStatusBarHidden:self.toolsView.hidden];
@@ -246,6 +249,8 @@ typedef NS_ENUM(NSInteger,FullScreenState){
 	self.toolsView.fullScreenButton.frame = CGRectMake(CGRectGetWidth(self.frame) - 50, 0, 50, 50);
 	self.toolsView.totalTimeLabel.frame = CGRectMake(CGRectGetMinX(self.toolsView.fullScreenButton.frame) - 60, 0, 55, 50);
 	self.toolsView.slider.frame = CGRectMake(5 + CGRectGetMaxX(self.toolsView.currentTimeLabel.frame), 0, CGRectGetMinX(self.toolsView.totalTimeLabel.frame) - CGRectGetMaxX(self.toolsView.currentTimeLabel.frame) - 10, 50);
+	self.toolsView.loadProgressView.frame = CGRectMake(CGRectGetMinX(self.toolsView.slider.frame) + 2, CGRectGetHeight(self.toolsView.slider.frame)/2 - 1, CGRectGetWidth(self.toolsView.slider.frame) - 4, 2);
+
 	self.screenState = smallScreen;
 	[self.toolsView.fullScreenButton setImage:[UIImage imageNamed:@"fullscreen.png"] forState:UIControlStateNormal];
 
@@ -315,11 +320,11 @@ typedef NS_ENUM(NSInteger,FullScreenState){
 			NSLog(@"AVPlayerStatusFailed");
 		}
 	} else if ([keyPath isEqualToString:@"loadedTimeRanges"]) {
-		//		NSTimeInterval timeInterval = [self availableDuration];// 计算缓冲进度
-		//		NSLog(@"Time Interval:%f",timeInterval);
+		NSTimeInterval timeInterval = [self availableDuration];// 计算缓冲进度
+		NSLog(@"已缓冲:%f",timeInterval);
 		CMTime duration = self.playerItem.duration;
 		CGFloat totalDuration = CMTimeGetSeconds(duration);
-		//		[self.videoProgress setProgress:timeInterval / totalDuration animated:YES];
+		[self.toolsView.loadProgressView setProgress:timeInterval / totalDuration animated:YES];
 	}
 }
 
@@ -369,6 +374,14 @@ typedef NS_ENUM(NSInteger,FullScreenState){
 	
 }
 
+- (NSTimeInterval)availableDuration{
+	NSArray *loadedTimeRanges = [[self.player currentItem] loadedTimeRanges];
+	CMTimeRange timeRange = [loadedTimeRanges.firstObject CMTimeRangeValue];// 获取缓冲区域
+	float startSeconds = CMTimeGetSeconds(timeRange.start);
+	float durationSeconds = CMTimeGetSeconds(timeRange.duration);
+	NSTimeInterval result = startSeconds + durationSeconds;// 计算缓冲总进度
+	return result;
+}
 
 
 @end

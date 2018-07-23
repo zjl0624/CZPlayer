@@ -28,6 +28,8 @@
 		5F057FF820E2200500C0B61C /* point@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F057FEE20E2200500C0B61C /* point@3x.png */; };
 		5F057FF920E2200500C0B61C /* shrinkscreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F057FEF20E2200500C0B61C /* shrinkscreen@2x.png */; };
 		5F057FFA20E2200500C0B61C /* shrinkscreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F057FF020E2200500C0B61C /* shrinkscreen@3x.png */; };
+		5FAE84D921056995006ACF2C /* UISlider+ExchangeTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FAE84D821056995006ACF2C /* UISlider+ExchangeTrack.m */; };
+		5FAE84DC21057F58006ACF2C /* CusSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FAE84DB21057F58006ACF2C /* CusSlider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,10 @@
 		5F057FEE20E2200500C0B61C /* point@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point@3x.png"; sourceTree = "<group>"; };
 		5F057FEF20E2200500C0B61C /* shrinkscreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shrinkscreen@2x.png"; sourceTree = "<group>"; };
 		5F057FF020E2200500C0B61C /* shrinkscreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shrinkscreen@3x.png"; sourceTree = "<group>"; };
+		5FAE84D721056995006ACF2C /* UISlider+ExchangeTrack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UISlider+ExchangeTrack.h"; sourceTree = "<group>"; };
+		5FAE84D821056995006ACF2C /* UISlider+ExchangeTrack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UISlider+ExchangeTrack.m"; sourceTree = "<group>"; };
+		5FAE84DA21057F58006ACF2C /* CusSlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CusSlider.h; sourceTree = "<group>"; };
+		5FAE84DB21057F58006ACF2C /* CusSlider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CusSlider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +129,10 @@
 				5F057FE120E21F3700C0B61C /* PlayerToolsView.h */,
 				5F057FE220E21F3700C0B61C /* PlayerToolsView.m */,
 				5F057FE420E21F5800C0B61C /* PlayerToolsView.xib */,
+				5FAE84D721056995006ACF2C /* UISlider+ExchangeTrack.h */,
+				5FAE84D821056995006ACF2C /* UISlider+ExchangeTrack.m */,
+				5FAE84DA21057F58006ACF2C /* CusSlider.h */,
+				5FAE84DB21057F58006ACF2C /* CusSlider.m */,
 			);
 			path = CustomAVPlayer;
 			sourceTree = "<group>";
@@ -229,7 +239,9 @@
 			files = (
 				5F057FC320E206AB00C0B61C /* CustomAVPlayer.xcdatamodeld in Sources */,
 				5F057FE320E21F3700C0B61C /* PlayerToolsView.m in Sources */,
+				5FAE84D921056995006ACF2C /* UISlider+ExchangeTrack.m in Sources */,
 				5F057FCB20E206AB00C0B61C /* main.m in Sources */,
+				5FAE84DC21057F58006ACF2C /* CusSlider.m in Sources */,
 				5F057FD620E209B900C0B61C /* ViewController.m in Sources */,
 				5F057FBA20E206AB00C0B61C /* AppDelegate.m in Sources */,
 				5F057FDA20E20AF300C0B61C /* PlayerView.m in Sources */,

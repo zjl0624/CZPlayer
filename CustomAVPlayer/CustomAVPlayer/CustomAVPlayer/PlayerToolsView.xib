@@ -39,9 +39,16 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="Rce-G6-t7t">
-                    <rect key="frame" x="113" y="51.5" width="380" height="31"/>
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" id="N3d-mW-Bzg">
+                    <rect key="frame" x="115" y="65" width="378" height="2"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="progressTintColor" red="0.95686274510000002" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </progressView>
+                <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="DAC-eD-Yu4">
+                    <rect key="frame" x="113" y="51" width="382" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="minimumTrackTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="maximumTrackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </slider>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -50,7 +57,8 @@
                 <outlet property="PlayButton" destination="r8N-tL-qTU" id="bM4-43-Zxy"/>
                 <outlet property="currentTimeLabel" destination="R4q-YS-UYw" id="CrG-T5-lod"/>
                 <outlet property="fullScreenButton" destination="1Kh-b9-v41" id="1JQ-AZ-xyB"/>
-                <outlet property="slider" destination="Rce-G6-t7t" id="wwN-YI-K5A"/>
+                <outlet property="loadProgressView" destination="N3d-mW-Bzg" id="e9O-m3-CNu"/>
+                <outlet property="slider" destination="DAC-eD-Yu4" id="nXc-iN-6qn"/>
                 <outlet property="totalTimeLabel" destination="9x1-g1-0RL" id="ibv-rb-Jp3"/>
             </connections>
             <point key="canvasLocation" x="48" y="30.5"/>

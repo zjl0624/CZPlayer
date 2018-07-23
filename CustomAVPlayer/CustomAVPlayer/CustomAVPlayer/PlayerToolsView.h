@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface PlayerToolsView : UIView
+@property (weak, nonatomic) IBOutlet UIProgressView *loadProgressView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *fullButtonToTrailing;
 @property (weak, nonatomic) IBOutlet UIButton *fullScreenButton;
 @property (weak, nonatomic) IBOutlet UILabel *totalTimeLabel;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 @property (weak, nonatomic) IBOutlet UIButton *PlayButton;
 @property (weak, nonatomic) IBOutlet UILabel *currentTimeLabel;
+
+
 + (instancetype)instanceView;
 @end
