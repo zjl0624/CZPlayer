@@ -91,13 +91,16 @@ typedef NS_ENUM(NSInteger,FullScreenState){
 - (void)setSourcePath:(NSString *)sourcePath {
 	_sourcePath = sourcePath;
 	if (_player) {
+        
 		[_player pause];
+        [_playerLayer removeFromSuperlayer];
 		[self removeKvoObserver];
 		[self removeNoti];
 		_player = nil;
+        
 		_playerLayer = nil;
 		_playerItem = nil;
-
+        
 	}
 	// 1、获取媒体资源地址
 	NSURL *sourceMovieURL;
@@ -118,7 +121,7 @@ typedef NS_ENUM(NSInteger,FullScreenState){
 	//	playerLayer.position = CGPointMake(CGRectGetMidX(self.view.bounds), 64 + CGRectGetMidY(playerLayer.bounds) + 30);
 	_playerLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
 	// 6、设置拉伸模式
-	_playerLayer.videoGravity = AVLayerVideoGravityResize;
+	_playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
 	// 7、获取播放持续时间
 	//	NSLog(@"%lld", _playerItem.duration.value);
 //	[self.layer addSublayer:_playerLayer];
@@ -126,18 +129,18 @@ typedef NS_ENUM(NSInteger,FullScreenState){
 	
 	[self addKVOObserver];
 	
-	[self addNoti];
-	
-	[self resetToolsView];
-	
-	__weak typeof(self) weakSelf = self;
-	// 播放1s回调一次
-	[_player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1) queue:NULL usingBlock:^(CMTime time) {
-		weakSelf.toolsView.currentTimeLabel.text = [weakSelf secondsToString:[weakSelf getTimeToSeconds:time]];
-		weakSelf.toolsView.slider.value = [weakSelf getTimeToSeconds:time] / self.totalSeconds;
-//		[weakSelf pv_setTimeLabel];
-//		NSLog(@"current=%lld",time.value);
-//		NSTimeInterval totalTime = CMTimeGetSeconds(weakSelf.player.currentItem.duration);
+    [self addNoti];
+    
+    [self resetToolsView];
+    
+    __weak typeof(self) weakSelf = self;
+    // 播放1s回调一次
+    [_player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1) queue:NULL usingBlock:^(CMTime time) {
+        weakSelf.toolsView.currentTimeLabel.text = [weakSelf secondsToString:[weakSelf getTimeToSeconds:time]];
+        weakSelf.toolsView.slider.value = [weakSelf getTimeToSeconds:time] / self.totalSeconds;
+        //        [weakSelf pv_setTimeLabel];
+        //        NSLog(@"current=%lld",time.value);
+        //        NSTimeInterval totalTime = CMTimeGetSeconds(weakSelf.player.currentItem.duration);
 //		weakSelf.toolView.slider.value = time.value/time.timescale/totalTime;//time.value/time.timescale是当前时间
 	}];
 }
